@@ -1,1 +1,13 @@
+name: Test organization
+on:
+ workflow_dispatch:
+jobs:
+  test:
+   runs-on: self-hosted
+   steps:
+   - uses: action/checkout@v4
 
+   - name: Test runner
+        run: |
+          echo "Hello from Organization Runner"
+          hostname
