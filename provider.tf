@@ -5,12 +5,13 @@ terraform {
       version = "4.41.0"
     }
   }
-  #backend "azurerm" {
-    #resource_group_name = "shashirg"
-    #storage_account_name = "shashistg"
-    #container_name = "shashicontainer"
-   # key = "teraform.tfstate"
- # }
+/*
+backend "azurerm" {
+    resource_group_name = "shashirg"
+    storage_account_name = "shashistg"
+    container_name = "shashicontainer"
+   key = "teraform.tfstate"
+  } */
 }
 
 provider "azurerm" {
