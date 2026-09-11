@@ -20,7 +20,7 @@ jobs:
     - name: Check Azure Account
       run: az account show
     - name: List Resource Groups
-      run: az group list --ouput table
+      run: az group list --output table
     - name: Test Azure connection
       run: |
        echo "Azure login successful"
