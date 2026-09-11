@@ -1,6 +1,6 @@
 name: Run infra pipeline
 on:
- workflows_dispatch:
+ workflow_dispatch:
 permissions: 
  id-token: write
  contents: read
