@@ -1,13 +1,61 @@
-name: Test organization
+name: Run infra pipeline
 on:
- workflow_dispatch:
+ workflows_dispatch:
+permissions: 
+ id-token: write
+ contents: read
 jobs:
-  test:
-   runs-on: self-hosted
-   steps:
-   - uses: actions/checkout@v4
+  test-azure:
+    runs-on: self-hosted
 
-   - name: Test runner
-     run: |
-          echo "Hello from Organization Runner"
-          hostname
+    steps: 
+    - name: Checkout
+      uses: actions/checkout@v4
+    - name: Azure Login
+      uses: Azure/login@v3.0.2
+      with:
+        client-id: ${{secrets.AZURE_CLIENT_ID}}
+        tenant-id: ${{secrets.AZURE_TENANT_ID}}
+        subscription-id: ${{secrets.AZURE_SUBSCRIPTION_ID}}
+    - name: Check Azure Account
+      run: az account show
+    - name: List Resource Groups
+      run: az group list --ouput table
+    - name: Test Azure connection
+      run: |
+       echo "Azure login successful"
+       az account shoe -- query name -o tsv
+    - name: Terraform Init 
+      run: terraform init
+    - name: Terraform Validate
+      run: terraform validate
+    - name: Terraform Plan
+      run: terraform plan
+    - name : Terraform Apply
+      run: teraform apply --auto-approve
+    
+      
+    
+        
+        
+      
+    
+    
+    
+    
+     
+ 
+
+# name: Test organization
+# on:
+#  workflow_dispatch:
+# jobs:
+#   test:
+#    runs-on: self-hosted
+#    steps:
+#    - uses: actions/checkout@v4
+
+#    - name: Test runner
+#      run: |
+#           echo "Hello from Organization Runner"
+#           hostname
