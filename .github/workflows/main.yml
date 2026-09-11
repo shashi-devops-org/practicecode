@@ -24,7 +24,7 @@ jobs:
     - name: Test Azure connection
       run: |
        echo "Azure login successful"
-       az account shoe -- query name -o tsv
+       az account show -- query name -o tsv
     - name: Terraform Init 
       run: terraform init
     - name: Terraform Validate
